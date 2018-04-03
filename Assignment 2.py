@@ -17,6 +17,7 @@ assign4 = []
 totalGrade = []
 
 studentNum = 0
+#Menu System
 
 #Student grade,ID and name data management
 while studentNum < 10:
@@ -93,22 +94,16 @@ while k != studentNum:
 #Rank the students (if the total Grade equivalent)
 def rankSystem(stuID = int(input("Enter the name and ID of the student: "))):
     rankData = copy.copy(matrixData)
-    for i in range(len(rankData)):
-        z = i
-        while z != 0:
-            if rankData[z][8] > rankData[z-1][8]:
-                rankData[z-1],rankData[z] = rankData[z],rankData[z-1]
-                z -= 1
-            else:
-                break
+    orderedRankData = sorted(rankData, key = lambda x: x[8], reverse = True) 
     
     j = 0
-    while j != len(rankData)-1:
-        if str(stuID) is not rankData[j][0]:
-            j += 1
-        else:
+    while j != len(orderedRankData)-1:
+        if str(stuID) == orderedRankData[j][0]:
             break
-    rankStu = j
+        else:
+            j += 1
+            
+    rankStu = j + 1
     return(rankStu)
 
 #Graph for distribution
