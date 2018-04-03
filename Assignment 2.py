@@ -96,19 +96,19 @@ def rankSystem(stuID = int(input("Enter the name and ID of the student: "))):
     for i in range(len(rankData)):
         z = i
         while z != 0:
-            if rankData[z][8] < rankData[z-1][8]:
+            if rankData[z][8] > rankData[z-1][8]:
                 rankData[z-1],rankData[z] = rankData[z],rankData[z-1]
                 z -= 1
             else:
                 break
     
     j = 0
-    while j >= 0:
-        if stuID == rankData[j][0]:
-            break
-        else:
+    while j != len(rankData)-1:
+        if str(stuID) is not rankData[j][0]:
             j += 1
-    rankStu = j + 1
+        else:
+            break
+    rankStu = j
     return(rankStu)
 
 #Graph for distribution
