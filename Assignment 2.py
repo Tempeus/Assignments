@@ -5,7 +5,7 @@ Friday, April 6th
 S. Hillal, Instructor
 Assignment 2
 '''
-
+import copy
 student = []
 iD = []
 test1 = []
@@ -90,10 +90,33 @@ while k != studentNum:
     matrixData.append([iD[k],student[k],test1[k],test2[k],assign1[k],assign2[k],assign3[k],assign4[k],totalGrade[k],letterGrade[k]])
     k += 1
     
-#Rank the students
+#Rank the students (if the total Grade equivalent)
+def rankSystem(stuID = int(input("Enter the name and ID of the student: "))):
+    rankData = copy.copy(matrixData)
+    for i in range(len(rankData)):
+        z = i
+        while z != 0:
+            if rankData[z][8] < rankData[z-1][8]:
+                rankData[z-1],rankData[z] = rankData[z],rankData[z-1]
+                z -= 1
+            else:
+                break
+    
+    j = 0
+    while j >= 0:
+        if stuID == rankData[j][0]:
+            break
+        else:
+            j += 1
+    rankStu = j + 1
+    return(rankStu)
+
 #Graph for distribution
+    
 #Give information for students when given ID
 
+    
+             
 print(student)
 print(iD)
 print(test1)
@@ -106,3 +129,4 @@ print(totalGrade)
 print(letterGrade)
 print(classAvg)
 print(matrixData)
+print(rankSystem())
