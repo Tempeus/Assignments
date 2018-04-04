@@ -152,10 +152,12 @@ print(rankSystem())
 print("----------------")
 
 #Menu System
-print("1- Enter student records (Name, ID, and 6 marks separated by commas")
-print("2- Give the total grade, letter grade, and rank of a student")
-print("3- Calculate class average")
-print("4- Display a simple chart to show grade distribution")
-print("5- Exit")
+print("1- Give the total grade")
+print("2- Give the letter grade")
+print("3- Give the rank of a student")
+print("4- Calculate class average")
+print("5- Give the grade distribution chart")
+print("6- Exit")
 
 answer = input("Enter a number: ")
+
