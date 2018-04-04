@@ -140,7 +140,7 @@ def LetterGradeDistribution():
     numA = 0
     numB = 0
     numC = 0
-    numE = 0
+    numF = 0
 
     while m != studentNum:
         if matrixData[m][9].count("A") == 1:
@@ -152,11 +152,11 @@ def LetterGradeDistribution():
         if matrixData[m][9].count("C") == 1:
             numC += 1
             m += 1
-        if matrixData[m][9].count("E") == 1:
-            numE += 1
+        if matrixData[m][9].count("F") == 1:
+            numF += 1
             m += 1
         
-    return("A:",numA,"B:",numB,"C:",numC,"E:",numE)
+    return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
 #Give information for students when given ID
 
     
@@ -188,17 +188,17 @@ while p == 0:
     if answer == "1": #Gives total Grade
         studentid = input("Enter the ID of the Student: ")
         print("The student's total average is:", TotalGradeFinder(studentid))
-    if answer == "2": #Gives letter Grade
+    elif answer == "2": #Gives letter Grade
         StuID = input("Enter the ID of the Student: ")
         print("The student's letter grade is:", LetterGradeIdentifier(StuID))
-    if answer == "3": #Gives rank of student
+    elif answer == "3": #Gives rank of student
         stuID = int(input("Enter the ID of the Student: "))
         print("The student is rank", rankSystem(stuID), "of his/her class")
-    if answer == "4": #Gives Class Average
+    elif answer == "4": #Gives Class Average
         print("The class average is: ", ClassAverage())
-    if answer == "5": #Gives letter grade distribution
+    elif answer == "5": #Gives letter grade distribution
         print(LetterGradeDistribution())
-    if answer == "6":
+    elif answer == "6":
         print("Exiting Program...")
         break
     else:
