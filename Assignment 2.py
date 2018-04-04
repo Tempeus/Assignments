@@ -17,7 +17,7 @@ assign4 = []
 totalGrade = []
 
 studentNum = 0
-#Menu System
+
 
 #Student grade,ID and name data management
 while studentNum < 10:
@@ -59,6 +59,21 @@ while studentNum < 10:
             print("Record Accepted")
 
 #Letter Grade Identifier
+def LetterGradeIdentifier(StuID = input("Enter the Name and ID of the student: ")):
+    iDpos = iD.index(StuID)
+    totalGradeStudent = totalGrade[iDpos]
+    letter = 0
+    if totalGradeStudent >= 87:
+        letter = "A"
+    if totalGradeStudent >= 75 and totalGradeStudent <= 86:
+        letter = "B"
+    if totalGradeStudent >= 65 and totalGradeStudent <= 74:
+        letter = "C"
+    else:
+        letter = "F"
+    return(letter)
+
+
 x = 0
 letterGrade = []
 while x != studentNum: #everything here is to give a letter grade associated to the total grade of the student
@@ -76,6 +91,14 @@ while x != studentNum: #everything here is to give a letter grade associated to 
         x += 1
 
 #Class Average
+def ClassAverage():
+    numb = 0
+    totalPercent = 0
+    while numb != studentNum:
+        totalPercent += totalGrade[numb]
+        numb += 1
+    return (totalPercent / numb)
+
 y = 0
 totalPer = 0
 while y != studentNum:
@@ -111,7 +134,7 @@ def rankSystem(stuID = int(input("Enter the name and ID of the student: "))):
 #Give information for students when given ID
 
     
-             
+#Testing the functions             
 print(student)
 print(iD)
 print(test1)
@@ -121,7 +144,18 @@ print(assign2)
 print(assign3)
 print(assign4)
 print(totalGrade)
-print(letterGrade)
+print(LetterGradeIdentifier())
 print(classAvg)
+print(ClassAverage())
 print(matrixData)
 print(rankSystem())
+print("----------------")
+
+#Menu System
+print("1- Enter student records (Name, ID, and 6 marks separated by commas")
+print("2- Give the total grade, letter grade, and rank of a student")
+print("3- Calculate class average")
+print("4- Display a simple chart to show grade distribution")
+print("5- Exit")
+
+answer = input("Enter a number: ")
