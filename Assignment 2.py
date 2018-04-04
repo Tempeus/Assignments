@@ -60,12 +60,12 @@ while studentNum < 10:
             print("Record Accepted")
 
 #Total Grade of Students
-def TotalGradeFinder(studentid = input("Enter the ID of the student: ")):
+def TotalGradeFinder(studentid):
     idPosition = iD.index(studentid)
     return(totalGrade[idPosition])
 
 #Letter Grade Identifier
-def LetterGradeIdentifier(StuID = input("Enter the ID of the student: ")):
+def LetterGradeIdentifier(StuID):
     iDpos = iD.index(StuID)
     totalGradeStudent = totalGrade[iDpos]
     letter = 0
@@ -121,7 +121,7 @@ while k != studentNum:
     k += 1
     
 #Rank the students (if the total Grade equivalent)
-def rankSystem(stuID = int(input("Enter the ID of the student: "))):
+def rankSystem(stuID):
     rankData = copy.copy(matrixData)
     orderedRankData = sorted(rankData, key = lambda x: x[8], reverse = True) 
     
@@ -150,11 +150,8 @@ print(assign2)
 print(assign3)
 print(assign4)
 print(totalGrade)
-print(LetterGradeIdentifier())
 print(classAvg)
-print(ClassAverage())
 print(matrixData)
-print(rankSystem())
 print("----------------")
 
 #Menu System
@@ -164,22 +161,25 @@ print("3- Give the rank of a student")
 print("4- Calculate class average")
 print("5- Give the grade distribution chart")
 print("6- Exit")
-
+print("----------------")
 p = 0
 while p == 0:
-    answer = input("Enter a number: ")
-    if answer == "1":
-        print(TotalGradeFinder())
-    if answer == "2":
-        print(LetterGradeIdentifier())
-    if answer == "3":
-        print(rankSystem())
-    if answer == "4":
+    answer = input("Enter a Number on the Menu: ")
+    if answer == "1": #Gives total Grade
+        studentid = input("Enter the ID of the Student: ")
+        print(TotalGradeFinder(studentid))
+    if answer == "2": #Gives letter Grade
+        StuID = input("Enter the ID of the Student: ")
+        print(LetterGradeIdentifier(StuID))
+    if answer == "3": #Gives rank of student
+        stuID = int(input("Enter the ID of the Student: "))
+        print(rankSystem(stuID))
+    if answer == "4": #Gives Class Average
         print(ClassAverage())
-    if answer == "5":
-        studentID5 = input("Enter the ID of the student: ")
+    if answer == "5": #Gives grade distribution
+        studentID5 = input("Enter the ID of the Student: ")
     if answer == "6":
-        print("Exiting program...")
+        print("Exiting Program...")
         break
 
-#issues: input for ID is happening before the menu
+
