@@ -18,7 +18,7 @@ assign4 = []
 totalGrade = []
 
 studentNum = 0
-
+print("Welcome to the Teacher's Simple Class Calculator")
 #Student grade,ID and name data management
 while studentNum < 10:
     record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces): ")
@@ -31,7 +31,8 @@ while studentNum < 10:
 
         if len(recordSplit) != 8: #This is a function that will notify the user that their information is incomplete
             print("Please insert the complete data of the student")
-                  
+        elif len(recordSplit[1]) != 3: #This will reject data where ID has less or more than 3 digits
+            print("The ID of each student must have 3 digits")
         elif recordSplit[1] in iD: #This is a function for duplicates ID and update information if needed
             update = input("Record already exists. Do you wish to update the Record? (y/n): ")
             dupPos = iD.index(recordSplit[1])
@@ -157,10 +158,9 @@ def LetterGradeDistribution():
             m += 1
         
     return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
-#Give information for students when given ID
-
     
 #Testing the functions             
+'''
 print(student)
 print(iD)
 print(test1)
@@ -172,9 +172,9 @@ print(assign4)
 print(totalGrade)
 print(classAvg)
 print(matrixData)
-print("----------------")
-
+'''
 #Menu System
+print("----------------")
 print("1- Give the Total Grade")
 print("2- Give the Letter Grade")
 print("3- Give the Rank of A Student")
