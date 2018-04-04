@@ -6,6 +6,7 @@ S. Hillal, Instructor
 Assignment 2
 '''
 import copy
+
 student = []
 iD = []
 test1 = []
@@ -58,8 +59,13 @@ while studentNum < 10:
             studentNum += 1
             print("Record Accepted")
 
+#Total Grade of Students
+def TotalGradeFinder(studentid = input("Enter the ID of the student: ")):
+    idPosition = iD.index(studentid)
+    return(totalGrade[idPosition])
+
 #Letter Grade Identifier
-def LetterGradeIdentifier(StuID = input("Enter the Name and ID of the student: ")):
+def LetterGradeIdentifier(StuID = input("Enter the ID of the student: ")):
     iDpos = iD.index(StuID)
     totalGradeStudent = totalGrade[iDpos]
     letter = 0
@@ -115,7 +121,7 @@ while k != studentNum:
     k += 1
     
 #Rank the students (if the total Grade equivalent)
-def rankSystem(stuID = int(input("Enter the name and ID of the student: "))):
+def rankSystem(stuID = int(input("Enter the ID of the student: "))):
     rankData = copy.copy(matrixData)
     orderedRankData = sorted(rankData, key = lambda x: x[8], reverse = True) 
     
@@ -159,5 +165,21 @@ print("4- Calculate class average")
 print("5- Give the grade distribution chart")
 print("6- Exit")
 
-answer = input("Enter a number: ")
+p = 0
+while p == 0:
+    answer = input("Enter a number: ")
+    if answer == "1":
+        print(TotalGradeFinder())
+    if answer == "2":
+        print(LetterGradeIdentifier())
+    if answer == "3":
+        print(rankSystem())
+    if answer == "4":
+        print(ClassAverage())
+    if answer == "5":
+        studentID5 = input("Enter the ID of the student: ")
+    if answer == "6":
+        print("Exiting program...")
+        break
 
+#issues: input for ID is happening before the menu
