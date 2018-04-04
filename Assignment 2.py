@@ -19,7 +19,6 @@ totalGrade = []
 
 studentNum = 0
 
-
 #Student grade,ID and name data management
 while studentNum < 10:
     record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces): ")
@@ -135,8 +134,29 @@ def rankSystem(stuID):
     rankStu = j + 1
     return(rankStu)
 
-#Graph for distribution
-    
+#Letter Grade distribution
+def LetterGradeDistribution():
+    m = 0
+    numA = 0
+    numB = 0
+    numC = 0
+    numE = 0
+
+    while m != studentNum:
+        if matrixData[m][9].count("A") == 1:
+            numA += 1
+            m += 1
+        if matrixData[m][9].count("B") == 1:
+            numB += 1
+            m += 1
+        if matrixData[m][9].count("C") == 1:
+            numC += 1
+            m += 1
+        if matrixData[m][9].count("E") == 1:
+            numE += 1
+            m += 1
+        
+    return("A:",numA,"B:",numB,"C:",numC,"E:",numE)
 #Give information for students when given ID
 
     
@@ -155,31 +175,33 @@ print(matrixData)
 print("----------------")
 
 #Menu System
-print("1- Give the total grade")
-print("2- Give the letter grade")
-print("3- Give the rank of a student")
-print("4- Calculate class average")
-print("5- Give the grade distribution chart")
+print("1- Give the Total Grade")
+print("2- Give the Letter Grade")
+print("3- Give the Rank of A Student")
+print("4- Calculate Class Average")
+print("5- Display Distribution of Letter Grades")
 print("6- Exit")
 print("----------------")
 p = 0
 while p == 0:
-    answer = input("Enter a Number on the Menu: ")
+    answer = input("Select an Option by Entering Its Number: ")
     if answer == "1": #Gives total Grade
         studentid = input("Enter the ID of the Student: ")
-        print(TotalGradeFinder(studentid))
+        print("The student's total average is:", TotalGradeFinder(studentid))
     if answer == "2": #Gives letter Grade
         StuID = input("Enter the ID of the Student: ")
-        print(LetterGradeIdentifier(StuID))
+        print("The student's letter grade is:", LetterGradeIdentifier(StuID))
     if answer == "3": #Gives rank of student
         stuID = int(input("Enter the ID of the Student: "))
-        print(rankSystem(stuID))
+        print("The student is rank", rankSystem(stuID), "of his/her class")
     if answer == "4": #Gives Class Average
-        print(ClassAverage())
-    if answer == "5": #Gives grade distribution
-        studentID5 = input("Enter the ID of the Student: ")
+        print("The class average is: ", ClassAverage())
+    if answer == "5": #Gives letter grade distribution
+        print(LetterGradeDistribution())
     if answer == "6":
         print("Exiting Program...")
         break
+    else:
+        print("Please Select an Option Within its Range")
 
 
