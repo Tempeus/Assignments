@@ -156,8 +156,10 @@ while p == 0:
                 numb += 1
             return (totalPercent / numb)
 
-
-        print("The class average is: ", ClassAverage())
+        if studentNum > 0:
+            print("The class average is: ", ClassAverage())
+        else:
+            print("Please enter student record before choosing this option")
 
     elif answer == "4": #Gives Letter Grade Distribution
             
@@ -184,8 +186,10 @@ while p == 0:
                     m += 1
                 
             return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
-
-        print(LetterGradeDistribution())
+        if studentNum > 0:
+            print(LetterGradeDistribution())
+        else:
+            print("Please enter student record before choosing this option")
         
     elif answer == "5":
         print("Exiting Program...")
@@ -218,3 +222,6 @@ print(totalGrade)
 print(classAvg)
 print(matrixData)
 '''
+
+
+
