@@ -105,6 +105,7 @@ while p == 0:
             k += 1
             
     elif answer == "2": #Gives Total grade, letter Grade and Rank of student
+        
         #Total Grade Finter
         def TotalGradeFinder(StuID):
             idPosition = iD.index(StuID)
@@ -140,8 +141,10 @@ while p == 0:
             rankStu = j + 1
             return rankStu
         StuID = input("Enter the ID of the Student: ")
-        print("The Student's Total Grade is:",TotalGradeFinder(StuID),"\nThe student's letter grade is:", LetterGradeIdentifier(StuID), "\nThe student's Rank is:",RankSystem(StuID))
-
+        if StuID in iD:
+            print("The Student's Total Grade is:",TotalGradeFinder(StuID),"\nThe student's letter grade is:", LetterGradeIdentifier(StuID), "\nThe student's Rank is:",RankSystem(StuID))
+        else:
+            print("ID not found, please add it in the database")
     elif answer == "3": #Gives the Class Average
 
         #Class Average
