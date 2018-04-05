@@ -69,6 +69,8 @@ while p == 0:
                     #this is used to calculate the final grade for a specific student
                     studentNum += 1
                     print("Record Accepted")
+
+        #Letter Grade for Matrix Data
         x = 0
         letterGrade = []
         while x != studentNum: #everything here is to give a letter grade associated to the total grade of the student
@@ -84,7 +86,8 @@ while p == 0:
             else:
                 letterGrade.append("F")
                 x += 1
-
+                
+        #Total Grade for Matrix Data
         y = 0
         totalPer = 0
         while y != studentNum:
@@ -121,6 +124,7 @@ while p == 0:
             else:
                 letter = "F"
             return letter
+        
         #Rank the students
         def RankSystem(StuID):
             rankData = copy.copy(matrixData)
@@ -139,6 +143,7 @@ while p == 0:
         print("The Student's Total Grade is:",TotalGradeFinder(StuID),"\nThe student's letter grade is:", LetterGradeIdentifier(StuID), "\nThe student's Rank is:",RankSystem(StuID))
 
     elif answer == "3": #Gives the Class Average
+
         #Class Average
         def ClassAverage():
             numb = 0
