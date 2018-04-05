@@ -125,12 +125,12 @@ def rankSystem(stuID):
     rankData = copy.copy(matrixData)
     orderedRankData = sorted(rankData, key = lambda x: x[8], reverse = True) 
     
-    j = 0
+    j = 0   #Issue: doesn't always work correctly
     while j != len(orderedRankData)-1:
         if str(stuID) == orderedRankData[j][0]:
             break
         else:
-            j += 1
+            j += 1   
             
     rankStu = j + 1
     return(rankStu)
@@ -147,13 +147,13 @@ def LetterGradeDistribution():
         if matrixData[m][9].count("A") == 1:
             numA += 1
             m += 1
-        if matrixData[m][9].count("B") == 1:
+        elif matrixData[m][9].count("B") == 1:
             numB += 1
             m += 1
-        if matrixData[m][9].count("C") == 1:
+        elif matrixData[m][9].count("C") == 1:
             numC += 1
             m += 1
-        if matrixData[m][9].count("F") == 1:
+        elif matrixData[m][9].count("F") == 1:
             numF += 1
             m += 1
         
