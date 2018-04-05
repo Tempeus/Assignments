@@ -118,9 +118,9 @@ while p == 0:
             letter = 0
             if totalGradeStudent >= 87:
                 letter = "A"
-            if totalGradeStudent >= 75 and totalGradeStudent <= 86:
+            elif totalGradeStudent >= 75 and totalGradeStudent <= 86:
                 letter = "B"
-            if totalGradeStudent >= 65 and totalGradeStudent <= 74:
+            elif totalGradeStudent >= 65 and totalGradeStudent <= 74:
                 letter = "C"
             else:
                 letter = "F"
@@ -198,8 +198,6 @@ while p == 0:
         print("Please Select an Option Within its Range")
 
 
-
-#Issues: If you pick an option and it has an empty list
 #Issues: If you ask for information for ID with different name
 #Issues: if total grade is equivavlent (rank system)
 #Issues: the rank system occasionally work
@@ -222,6 +220,5 @@ print(totalGrade)
 print(classAvg)
 print(matrixData)
 '''
-
 
 
