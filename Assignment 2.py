@@ -186,9 +186,6 @@ while p == 0:
             print("Missing some information")
         
         
-            
-        
-#need an index for students because what if Bob,123
     elif answer == "3": #Option 3: Gives the Class Average
 
         #Class Average
