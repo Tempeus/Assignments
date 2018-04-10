@@ -27,6 +27,7 @@ print("3- Calculate Class Average")
 print("4- Display Distribution of Letter Grades")
 print("5- Exit")
 print("----------------")
+
 p = 0
 while p == 0:
     answer = input("Select an Option by Entering Its Number: ")
@@ -81,12 +82,15 @@ while p == 0:
             if totalGrade[x] >= 87:
                 letterGrade.append("A")
                 x += 1
+
             elif totalGrade[x] >= 75 and totalGrade[x] <= 86:
                 letterGrade.append("B")
                 x += 1
+
             elif totalGrade[x] >= 65 and totalGrade[x] <= 74:
                 letterGrade.append("C")
                 x += 1
+
             else:
                 letterGrade.append("F")
                 x += 1
@@ -120,14 +124,19 @@ while p == 0:
             iDpos = iD.index(StuID)
             totalGradeStudent = totalGrade[iDpos]
             letter = 0
+
             if totalGradeStudent >= 87:
                 letter = "A"
+
             elif totalGradeStudent >= 75 and totalGradeStudent <= 86:
                 letter = "B"
+
             elif totalGradeStudent >= 65 and totalGradeStudent <= 74:
                 letter = "C"
+
             else:
                 letter = "F"
+
             return letter
         
         #Rank the students
@@ -154,7 +163,7 @@ while p == 0:
                 print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
 
             elif SplitStuID[0] in student[posStudent] and SplitStuID[1] not in iD[posStudent]: #There will be an error if the iD is in the list but the given name is not on the list, this code is to prevent that error
-                rankAnswer = input("The Student's ID does not correspond to the given name, did you mean " +iD[posStudent]+ " (y/n)?: ")
+                rankAnswer = input("The Student's ID does not correspond to the given name, did you mean " +iD[posStudent]+ " (y/n)?: ") #Gives the option to correct the mistake
                 if rankAnswer.lower() == "y":
                     print("The Student's Total Grade is:",TotalGradeFinder(iD[posStudent]),"\nThe student's letter grade is:", LetterGradeIdentifier(iD[posStudent]), "\nThe student's Rank is:",RankSystem(iD[posStudent]))
                 elif rankAnswer.lower() != "y" and rankAnswer.lower() != "n":
@@ -164,7 +173,7 @@ while p == 0:
                 print("Error please enter appropriate information in appropriate order")
                 
             elif SplitStuID[0] not in student[posStudent] and SplitStuID[1] in iD[posStudent]: #there will be an error if the name is in the list but the given id is not on the list, this code is to prevent that error
-                print("The Student's name does not correspond to the given ID, did you mean " +student[posStudent]+ " (y/n)?")
+                print("The Student's name does not correspond to the given ID, did you mean " +student[posStudent]+ " (y/n)?") #Gives the option to correct the mistake
                 if rankAnswer.lower() == "y":
                     print("The Student's Total Grade is:",TotalGradeFinder(iD[posStudent]),"\nThe student's letter grade is:", LetterGradeIdentifier(iD[posStudent]), "\nThe student's Rank is:",RankSystem(iD[posStudent]))
                 elif rankAnswer.lower() != "y" and rankAnswer.lower() != "n":
@@ -172,6 +181,7 @@ while p == 0:
                     
             else:
                 print("ID and name not found, please add it in the database")
+
         else:
             print("Missing some information")
         
@@ -220,28 +230,21 @@ while p == 0:
                     m += 1
                 
             return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
+
         if studentNum > 0:
             print(LetterGradeDistribution())
+            
         else:
             print("Please enter student record before choosing this option")
         
     elif answer == "5":
         print("Exiting Program...")
         break
+    
     else:
         print("Please Select an Option Within its Range")
 
-
 #Issues: if total grade is equivavlent (rank system)
-#Issues: the rank system occasionally work
-'''
-matrix.count(max) >1
-    print(rank.index() + 1)
-'''
-
-
-
-
 #Testing the functions             
 
 '''
