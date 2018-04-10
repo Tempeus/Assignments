@@ -30,7 +30,7 @@ print("----------------")
 p = 0
 while p == 0:
     answer = input("Select an Option by Entering Its Number: ")
-    if answer == "1": #gives student records
+    if answer == "1": #Option 1:gives student records
         while studentNum < 10:
             record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces): ")
             
@@ -65,7 +65,7 @@ while p == 0:
                     assign2.append(recordSplit[5])#this will add the grade for assignemnt 2 in the assignemnt 2 database
                     assign3.append(recordSplit[6])#this will add the grade for assignment 3 in the assignment 3 database
                     assign4.append(recordSplit[7])#this will add the grade for assignment 4 in the assignment 4 database
-                    totalGrade.append((0.20 * float(recordSplit[2])) + (0.20 * float(recordSplit[3])) + (0.15 * float(recordSplit[4])) + (0.15 * float(recordSplit[5])) + (0.15 * float(recordSplit[6])) + (0.15 * float(recordSplit[7])))
+                    totalGrade.append(float(recordSplit[2]) + float(recordSplit[3]) + float(recordSplit[4]) + float(recordSplit[5]) + float(recordSplit[6]) + float(recordSplit[7]))
                     #this is used to calculate the final grade for a specific student
                     studentNum += 1
                     print("Record Accepted")
@@ -104,7 +104,7 @@ while p == 0:
             matrixData.append([iD[k],student[k],test1[k],test2[k],assign1[k],assign2[k],assign3[k],assign4[k],totalGrade[k],letterGrade[k]])
             k += 1
             
-    elif answer == "2": #Gives Total grade, letter Grade and Rank of student
+    elif answer == "2": #Option 2: Gives Total grade, letter Grade and Rank of student
         
         #Total Grade Finter
         def TotalGradeFinder(StuID):
@@ -140,12 +140,18 @@ while p == 0:
 
             rankStu = j + 1
             return rankStu
-        StuID = input("Enter the ID of the Student: ")
-        if StuID in iD:
-            print("The Student's Total Grade is:",TotalGradeFinder(StuID),"\nThe student's letter grade is:", LetterGradeIdentifier(StuID), "\nThe student's Rank is:",RankSystem(StuID))
+        StuID = str(input("Enter the Name and ID of the Student [name,id]: "))
+        SplitStuID = StuID.split(",")
+        if SplitStuID[0] in student and SplitStuID[1] in iD:
+            print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
+        elif SplitStuID[0] in student and SplitStuID[1] not in iD:
+            print("The Student's name does not correspond to the given ID")
+        elif SplitStuID[0] not in student and SplitStuID[1] in iD:
+            print("The given ID does not correspond to the given student name")
         else:
-            print("ID not found, please add it in the database")
-    elif answer == "3": #Gives the Class Average
+            print("ID and name not found, please add it in the database")
+
+    elif answer == "3": #Option 3: Gives the Class Average
 
         #Class Average
         def ClassAverage():
@@ -198,7 +204,6 @@ while p == 0:
         print("Please Select an Option Within its Range")
 
 
-#Issues: If you ask for information for ID with different name
 #Issues: if total grade is equivavlent (rank system)
 #Issues: the rank system occasionally work
 
@@ -207,6 +212,7 @@ while p == 0:
 
 
 #Testing the functions             
+
 '''
 print(student)
 print(iD)
@@ -217,8 +223,4 @@ print(assign2)
 print(assign3)
 print(assign4)
 print(totalGrade)
-print(classAvg)
-print(matrixData)
 '''
-
-
