@@ -57,6 +57,9 @@ while p == 0:
                         assign3[dupPos] = recordSplit[6]
                         assign4[dupPos] = recordSplit[7]
                         print("Record Updated")
+
+                    elif update.lower() != "y" and update.lower() != "n":
+                        print("Please input either y for yes and n for no")
                 else:
                     student.append(recordSplit[0])#this will add the name of the student in the name database
                     iD.append(recordSplit[1])#this will add the ID of the student in the ID database
@@ -145,16 +148,28 @@ while p == 0:
         
         StuID = str(input("Enter the Name and ID of the Student [name,id]: "))
         SplitStuID = StuID.split(",")
-        if len(SplitStuID) == 2: #If the length of the list isn't 2, it would give an index error, in order to prevent that we need this code
+        if len(SplitStuID) == 2 and SplitStuID[0] in student: #If the length of the list isn't 2, it would give an index error, in order to prevent that we need this code
             posStudent = student.index(SplitStuID[0])
             if SplitStuID[0] in student[posStudent] and SplitStuID[1] in iD[posStudent]: #it will print total grade, letter grade and the rank with the input
                 print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
+
             elif SplitStuID[0] in student[posStudent] and SplitStuID[1] not in iD[posStudent]: #There will be an error if the iD is in the list but the given name is not on the list, this code is to prevent that error
-                print("The Student's name does not correspond to the given ID")
+                rankAnswer = input("The Student's ID does not correspond to the given name, did you mean " +iD[posStudent]+ " (y/n)?: ")
+                if rankAnswer.lower() == "y":
+                    print("The Student's Total Grade is:",TotalGradeFinder(iD[posStudent]),"\nThe student's letter grade is:", LetterGradeIdentifier(iD[posStudent]), "\nThe student's Rank is:",RankSystem(iD[posStudent]))
+                elif rankAnswer.lower() != "y" and rankAnswer.lower() != "n":
+                    print("Please input y for yes and n for no")
+                    
             elif SplitStuID[0] in iD[posStudent] or SplitStuID[1] in student[posStudent]: #There will be an error if the user mixed up the order of input, this code is to prevent that error
                 print("Error please enter appropriate information in appropriate order")
+                
             elif SplitStuID[0] not in student[posStudent] and SplitStuID[1] in iD[posStudent]: #there will be an error if the name is in the list but the given id is not on the list, this code is to prevent that error
-                print("The given ID does not correspond to the given student name")
+                print("The Student's name does not correspond to the given ID, did you mean " +student[posStudent]+ " (y/n)?")
+                if rankAnswer.lower() == "y":
+                    print("The Student's Total Grade is:",TotalGradeFinder(iD[posStudent]),"\nThe student's letter grade is:", LetterGradeIdentifier(iD[posStudent]), "\nThe student's Rank is:",RankSystem(iD[posStudent]))
+                elif rankAnswer.lower() != "y" and rankAnswer.lower() != "n":
+                    print("Please input y for yes and n for no")
+                    
             else:
                 print("ID and name not found, please add it in the database")
         else:
