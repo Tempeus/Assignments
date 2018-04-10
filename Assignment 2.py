@@ -34,7 +34,7 @@ while p == 0:
         while studentNum < 10:
             record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces): ")
             
-            if record == "done":
+            if record.lower() == "done":
                 break
             
             else: 
@@ -131,31 +131,39 @@ while p == 0:
         def RankSystem(StuID):
             rankData = copy.copy(matrixData)
             orderedRankData = sorted(rankData, key = lambda x: x[8], reverse = True)
-
             j = 0
+                    
             while j != len(orderedRankData) - 1:
                 if str(StuID) == orderedRankData[j][0]:
                     break
+                
                 else:
                     j += 1
 
-            rankStu = j + 1
+            rankStu = j + 1 
             return rankStu
+        
         StuID = str(input("Enter the Name and ID of the Student [name,id]: "))
         SplitStuID = StuID.split(",")
-        if len(SplitStuID) != 2: #If the length of the list isn't 2, it would give an index error, in order to prevent that we need this code
-            print("Missing some information")
-        elif SplitStuID[0] in student and SplitStuID[1] in iD: #it will print total grade, letter grade and the rank with the input
-            print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
-        elif SplitStuID[0] in student and SplitStuID[1] not in iD: #There will be an error if the iD is in the list but the given name is not on the list, this code is to prevent that error
-            print("The Student's name does not correspond to the given ID")
-        elif SplitStuID[0] in iD or SplitStuID[1] in student: #There will be an error if the user mixed up the order of input, this code is to prevent that error
-            print("Error please enter appropriate information in appropriate order")
-        elif SplitStuID[0] not in student and SplitStuID[1] in iD: #there will be an error if the name is in the list but the given id is not on the list, this code is to prevent that error
-            print("The given ID does not correspond to the given student name")
+        if len(SplitStuID) == 2: #If the length of the list isn't 2, it would give an index error, in order to prevent that we need this code
+            posStudent = student.index(SplitStuID[0])
+            if SplitStuID[0] in student[posStudent] and SplitStuID[1] in iD[posStudent]: #it will print total grade, letter grade and the rank with the input
+                print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
+            elif SplitStuID[0] in student[posStudent] and SplitStuID[1] not in iD[posStudent]: #There will be an error if the iD is in the list but the given name is not on the list, this code is to prevent that error
+                print("The Student's name does not correspond to the given ID")
+            elif SplitStuID[0] in iD[posStudent] or SplitStuID[1] in student[posStudent]: #There will be an error if the user mixed up the order of input, this code is to prevent that error
+                print("Error please enter appropriate information in appropriate order")
+            elif SplitStuID[0] not in student[posStudent] and SplitStuID[1] in iD[posStudent]: #there will be an error if the name is in the list but the given id is not on the list, this code is to prevent that error
+                print("The given ID does not correspond to the given student name")
+            else:
+                print("ID and name not found, please add it in the database")
         else:
-            print("ID and name not found, please add it in the database")
-
+            print("Missing some information")
+        
+        
+            
+        
+#need an index for students because what if Bob,123
     elif answer == "3": #Option 3: Gives the Class Average
 
         #Class Average
@@ -172,7 +180,7 @@ while p == 0:
         else:
             print("Please enter student record before choosing this option")
 
-    elif answer == "4": #Gives Letter Grade Distribution
+    elif answer == "4": #Option 4: Gives Letter Grade Distribution
             
         #Letter Grade distribution
         def LetterGradeDistribution():
@@ -211,7 +219,10 @@ while p == 0:
 
 #Issues: if total grade is equivavlent (rank system)
 #Issues: the rank system occasionally work
-
+'''
+matrix.count(max) >1
+    print(rank.index() + 1)
+'''
 
 
 
