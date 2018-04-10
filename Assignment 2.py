@@ -48,7 +48,7 @@ while p == 0:
                     update = input("Record already exists. Do you wish to update the Record? (y/n): ")
                     dupPos = iD.index(recordSplit[1])
 
-                    if update == "y": #this will update the grades
+                    if update.lower() == "y": #this will update the grades
                         student[dupPos] = recordSplit[0]
                         test1[dupPos] = recordSplit[2]
                         test2[dupPos] = recordSplit[3]
@@ -56,6 +56,7 @@ while p == 0:
                         assign2[dupPos] = recordSplit[5]
                         assign3[dupPos] = recordSplit[6]
                         assign4[dupPos] = recordSplit[7]
+                        print("Record Updated")
                 else:
                     student.append(recordSplit[0])#this will add the name of the student in the name database
                     iD.append(recordSplit[1])#this will add the ID of the student in the ID database
@@ -142,11 +143,15 @@ while p == 0:
             return rankStu
         StuID = str(input("Enter the Name and ID of the Student [name,id]: "))
         SplitStuID = StuID.split(",")
-        if SplitStuID[0] in student and SplitStuID[1] in iD:
+        if len(SplitStuID) != 2: #If the length of the list isn't 2, it would give an index error, in order to prevent that we need this code
+            print("Missing some information")
+        elif SplitStuID[0] in student and SplitStuID[1] in iD: #it will print total grade, letter grade and the rank with the input
             print("The Student's Total Grade is:",TotalGradeFinder(SplitStuID[1]),"\nThe student's letter grade is:", LetterGradeIdentifier(SplitStuID[1]), "\nThe student's Rank is:",RankSystem(SplitStuID[1]))
-        elif SplitStuID[0] in student and SplitStuID[1] not in iD:
+        elif SplitStuID[0] in student and SplitStuID[1] not in iD: #There will be an error if the iD is in the list but the given name is not on the list, this code is to prevent that error
             print("The Student's name does not correspond to the given ID")
-        elif SplitStuID[0] not in student and SplitStuID[1] in iD:
+        elif SplitStuID[0] in iD or SplitStuID[1] in student: #There will be an error if the user mixed up the order of input, this code is to prevent that error
+            print("Error please enter appropriate information in appropriate order")
+        elif SplitStuID[0] not in student and SplitStuID[1] in iD: #there will be an error if the name is in the list but the given id is not on the list, this code is to prevent that error
             print("The given ID does not correspond to the given student name")
         else:
             print("ID and name not found, please add it in the database")
