@@ -33,7 +33,7 @@ while p == 0:
     answer = input("Select an Option by Entering Its Number: ")
     if answer == "1": #Option 1:gives student records
         while studentNum < 10:
-            record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces): ")
+            record = input("Enter Student Record [Name,ID,Test1-2,Assignment1-4](Separated by commas,no spaces) or input done when finished: ")
             
             if record.lower() == "done":
                 break
