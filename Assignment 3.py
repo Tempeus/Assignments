@@ -5,6 +5,39 @@ Friday, May 4th
 S. Hillal, Instructor
 Assignment 3
 '''
+#STUDENT CLASS
+class Student: 
+    'Base class for all students' 
+    Count = 0   
+    def __init__(self,st_name,st_id,total_grade = 0,st_credits=0): 
+        self.name = st_name
+        self.id = st_id
+        self.grade = total_grade
+        self.credits = st_credits
+        Student.Count += 1
+        
+    def __del__(self):
+        Student.Count -= 1
+        print ("Deleting Student instance!")
+
+    def __eq__(self,student):
+        return (self.id == student.id)
+
+    def __repr__(self):
+        return("student {} {} {}".format(self.id,self.name,self.grade))
+
+    def update_grade(self,new_grade):
+        self.grade = new_grade
+    
+    def displayCount(self): 
+        print ("Count:{:3d}".format(Student.Count))
+        
+    def displayStudent(self):
+        txt = "Name:{} ID:{} Credits:{}"
+        print(txt.format(self.name,self.id,self.credits))
+
+    def update_credits(self, new_credits):
+        self.credits += new_credits    
 #MENU
 print("Welcome to the Teacher's Simple Class Calculator")
 
@@ -67,30 +100,25 @@ while loop == 0:
             print("Record Accepted")
 
         #STUDENT DICTIONARY
-        student1 = {
+        student1 = 
         #https://stackoverflow.com/questions/42504450/create-student-database-in-python
         
-        #STUDENT CLASS
-        class Student:
-            "Options for all students"
-            def __init__(self,st_name,st_id):
-                self.name = st_name
-                self.id = st_id
+
+
+
+#{id: student record} and no longer make a list and append
 
 
 
 
 
-
-'''
-THINGS TO DO:
-STUDENT CLASS
-INPUT
-ANALYZE
-REPORT
-TOTAL GRADE
-LETTER GRADE
-CLASS AVERAGE
-GRADE DISTRIBUTION
-VISUALIZATION OF THE STORED DATA AS REQUESTED
-'''
+#THINGS TO DO:
+#STUDENT CLASS
+#INPUT
+#ANALYZE
+#REPORT
+#TOTAL GRADE
+#LETTER GRADE
+#CLASS AVERAGE
+#GRADE DISTRIBUTION
+#VISUALIZATION OF THE STORED DATA AS REQUESTED
