@@ -26,39 +26,77 @@ class Student:
     def __repr__(self):
         return("student {} {} {}".format(self.id,self.name,self.grade))
 
-    def update_grade(self,new_grade):
-        self.grade = new_grade
-    
-    def displayCount(self): 
-        print ("Count:{:3d}".format(Student.Count))
-        
-    def displayStudent(self):
-        txt = "Name:{} ID:{} Credits:{}"
-        print(txt.format(self.name,self.id,self.credits))
+    #LETTER GRADE IDENTIFIER
+    def LetterGradeIdentifier(StuID):
+        iDpos = iD.index(StuID)
+        totalGradeStudent = totalGrade[iDpos]
+        letter = 0
 
-    def update_credits(self, new_credits):
-        self.credits += new_credits    
+        if totalGradeStudent >= 87:
+            letter = "A"
+
+        elif totalGradeStudent >= 75 and totalGradeStudent <= 86:
+            letter = "B"
+
+        elif totalGradeStudent >= 65 and totalGradeStudent <= 74:
+            letter = "C"
+
+        else:
+            letter = "F"
+
+        return letter
+    
+    #TOTAL GRADE CALCULATOR
+    def TotalGradeFinder(StuID):
+        idPosition = iD.index(StuID)
+        return totalGrade[idPosition]
+
+    #CLASS AVERAGE CALCULATOR
+    def ClassAverage():
+        numb = 0
+        totalPercent = 0
+        while numb != studentNum:
+            totalPercent += totalGrade[numb]
+            numb += 1
+        return (totalPercent / numb)
+
+    #LETTER GARDE DISTRIBUTOR
+        def LetterGradeDistribution():
+            m = 0
+            numA = 0
+            numB = 0
+            numC = 0
+            numF = 0
+
+            while m != studentNum:
+                if matrixData[m][9].count("A") == 1:
+                    numA += 1
+                    m += 1
+                elif matrixData[m][9].count("B") == 1:
+                    numB += 1
+                    m += 1
+                elif matrixData[m][9].count("C") == 1:
+                    numC += 1
+                    m += 1
+                elif matrixData[m][9].count("F") == 1:
+                    numF += 1
+                    m += 1
+                
+            return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
+        
 #MENU
 print("Welcome to the Teacher's Simple Class Calculator")
 
 print("----------------")
-print("1- Process Text File and Store Data")
-print("2- Display All Student Information")
+print("1- Read and Process Student's Record")
+print("2- Display All Student Records")
 print("3- Display Record For Specific Student")
 print("4- Display Class Average and Grade Distribution")
 print("5- Exit")
 print("----------------")
 
 #STUDENT INFORMATION LIST
-student = []
-iD = []
-test1 = []
-test2 = []
-assign1 = []
-assign2 = []
-assign3 = []
-assign4 = []
-totalGrade = []
+studentDICT = {}
 
 #OPENING FILE
 txt = open("students.txt","r")
@@ -73,23 +111,18 @@ loop = 0
 while loop == 0:
     answer = input("Select an Option by Entering It's Number: ")
 
-    #LISTING ALL THE STUDENT DATAS
-    if answer == 1:
+    #PROCESSING ALL THE STUDENT DATAS
+    if answer == "1":
         
         lineNUM = 0
         condition = True
         while lineNUM != numStu:
             if lineNUM <= 10:
                 row = lines[lineNUM].split(",")
-                student.append(row[0])
-                iD.append(row[1])
-                test1.append(row[2])
-                test2.append(row[3])
-                assign1.append(row[4])
-                assign2.append(row[5])
-                assign3.append(row[6])
-                assign4.append(row[7])
-                totalGrade.append(float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]))
+                row[7] = row[7].strip("\n") #Takes away the annoying \n from the last evaluation
+                totalGRADE = (float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]) + float(row[6]) + float(row[7]))
+                studentINFO = [row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],totalGRADE] #has all the information of the student in a form of a list in order to put it in the dictionary
+                studentDICT.setdefault(row[1], studentINFO) #The student's record is bounded with his/her ID
                 lineNUM += 1
                 
             else:
@@ -98,27 +131,36 @@ while loop == 0:
 
         if condition == True:
             print("Record Accepted")
-
-        #STUDENT DICTIONARY
-        student1 = 
-        #https://stackoverflow.com/questions/42504450/create-student-database-in-python
+            txt.close() #Closes student.txt file
+            print(studentDICT)
+            continue
         
+    #DISPLAY ALL STUDENT RECORDS
+    if answer == "2":
+        
+    #EXIT FUNCTION
+    elif answer == "5":
+        print("Exiting Program...")
+        break
+
+    #IF INPUT ISN'T IN THE RANGE
+    else:
+        print("Please Select an Option Within the Range")
 
 
-
-#{id: student record} and no longer make a list and append
-
+    
+        
 
 
 
 
 #THINGS TO DO:
-#STUDENT CLASS
-#INPUT
-#ANALYZE
-#REPORT
-#TOTAL GRADE
-#LETTER GRADE
-#CLASS AVERAGE
-#GRADE DISTRIBUTION
-#VISUALIZATION OF THE STORED DATA AS REQUESTED
+#STUDENT CLASS[X]
+#INPUT[X]
+#ANALYZE[X]
+#REPORT[]
+#TOTAL GRADE[]
+#LETTER GRADE[]
+#CLASS AVERAGE[]
+#GRADE DISTRIBUTION[]
+#VISUALIZATION OF THE STORED DATA AS REQUESTED[]
