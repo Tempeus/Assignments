@@ -155,6 +155,7 @@ while loop == 0:
 
 
 #THINGS TO DO:
+#studentDICT.get('321')[0]
 #STUDENT CLASS[X]
 #INPUT[X]
 #ANALYZE[X]
