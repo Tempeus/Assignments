@@ -26,7 +26,8 @@ class Student:
     def __repr__(self):
         return("student {} {} {}".format(self.id,self.name,self.grade))
 
-    #LETTER GRADE IDENTIFIER
+
+    #LETTER GRADE IDENTIFIER [FIX NEEDED]
     def LetterGradeIdentifier(StuID):
         iDpos = iD.index(StuID)
         totalGradeStudent = totalGrade[iDpos]
@@ -46,21 +47,21 @@ class Student:
 
         return letter
     
-    #TOTAL GRADE CALCULATOR
-    def TotalGradeFinder(StuID):
-        idPosition = iD.index(StuID)
-        return totalGrade[idPosition]
+    #TOTAL GRADE OF STUDENT FINDER #[FIX NEEDED]
+    def TotalGradeFinder(stuID):
+        ''' This retrieves the total grade of a specified student using his/her student ID'''
+        return studentDICT.get(stuID)[1]
 
-    #CLASS AVERAGE CALCULATOR
-    def ClassAverage():
+    #CLASS AVERAGE CALCULATOR #[FIX NEEDED]
+    def ClassAverage(): #go through the lines and retrieve ids
         numb = 0
         totalPercent = 0
-        while numb != studentNum:
-            totalPercent += totalGrade[numb]
+        while numb != numStu:
+            totalPercent += studentDICT.get(ID)[1]
             numb += 1
         return (totalPercent / numb)
 
-    #LETTER GARDE DISTRIBUTOR
+    #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
         def LetterGradeDistribution():
             m = 0
             numA = 0
@@ -121,7 +122,7 @@ while loop == 0:
                 row = lines[lineNUM].split(",")
                 row[7] = row[7].strip("\n") #Takes away the annoying \n from the last evaluation
                 totalGRADE = (float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]) + float(row[6]) + float(row[7]))
-                studentINFO = [row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],totalGRADE] #has all the information of the student in a form of a list in order to put it in the dictionary
+                studentINFO = [row, totalGRADE] #has all the information of the student in a form of a list in order to put it in the dictionary
                 studentDICT.setdefault(row[1], studentINFO) #The student's record is bounded with his/her ID
                 lineNUM += 1
                 
@@ -136,7 +137,7 @@ while loop == 0:
             continue
         
     #DISPLAY ALL STUDENT RECORDS
-    if answer == "2":
+    #if answer == "2":
         
     #EXIT FUNCTION
     elif answer == "5":
@@ -155,7 +156,6 @@ while loop == 0:
 
 
 #THINGS TO DO:
-#studentDICT.get('321')[0]
 #STUDENT CLASS[X]
 #INPUT[X]
 #ANALYZE[X]
