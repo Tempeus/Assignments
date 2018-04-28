@@ -61,32 +61,28 @@ class Student:
         return (totalPercent / numb)
 
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
-        def LetterGradeDistribution():
-            m = 0
-            numA = 0
-            numB = 0
-            numC = 0
-            numF = 0
-            
-            while m != numStu:
-                if matrixData[m][9].count("A") == 1:
-                    numA += 1
-                    m += 1
-                elif matrixData[m][9].count("B") == 1:
-                    numB += 1
-                    m += 1
-                elif matrixData[m][9].count("C") == 1:
-                    numC += 1
-                    m += 1
-                elif matrixData[m][9].count("F") == 1:
-                    numF += 1
-                    m += 1
+    def LetterGradeDistribution():
+        numA = 0
+        numB = 0
+        numC = 0
+        numF = 0
+        for ID in studentDICT.keys():
+            if Student.LetterGradeIdentifier(ID) == "A":
+                numA += 1
                 
-            return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
+            elif Student.LetterGradeIdentifier(ID) == "B":
+                numB += 1
+                
+            elif Student.LetterGradeIdentifier(ID) == "C":
+                numC += 1
+                
+            elif Student.LetterGradeIdentifier(ID) == "F":
+                numF += 1
+            
+        return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
         
 #MENU
 print("Welcome to the Teacher's Simple Class Calculator")
-
 print("----------------")
 print("1- Read and Process Student's Record")
 print("2- Display All Student Records")
@@ -103,8 +99,13 @@ loop = 0
 while loop == 0:
     answer = input("Select an Option by Entering It's Number: ")
 
+    #EXIT FUNCTION
+    if answer == "5":
+        print("Exiting Program...")
+        break
+    
     #PROCESSING ALL THE STUDENT DATAS
-    if answer == "1":
+    elif answer == "1":
         
         lineNUM = 0
         condition = True
@@ -124,9 +125,13 @@ while loop == 0:
         if condition == True:
             print("Record Accepted")
             txt.close() #Closes student.txt file
-            print(studentDICT)
+            print(studentDICT) #For testing Only
             continue
-        
+
+    #ERROR IF DIDNT PICK OPTION 1 FIRST
+    elif studentDICT == {}:
+        print("Error: either you didn't let the program read or process student records ")
+
     #DISPLAY ALL STUDENT RECORDS
     #elif answer == "2":
 
@@ -138,31 +143,19 @@ while loop == 0:
             letGRADE = Student.LetterGradeIdentifier(ID)
             print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE)
             print(studentDICT.get(ID)[0][0] + "'s letter grade is:",letGRADE)
-        else:
-            print("Error: either you didn't let the program read or process student records or you entered a invalid ID")
+        elif ID not in studentDICT.keys():
+            print("Error: entered an invalid ID")
+        
 
     #DISPLAY CLASS AVERAGE OR GRADE DISTRIBUTION
     elif answer == "4":
         if studentDICT != {}:
             print("The class average is:",Student.ClassAverage())
-            #print("The Grade Distribution is:\n",
-        else:
-            print("Error: you didn't let the program read or process student records")
-    
-    #EXIT FUNCTION
-    elif answer == "5":
-        print("Exiting Program...")
-        break
+            print("The Grade Distribution is:\n" + Student.LetterGradeDistribution())
 
     #IF INPUT ISN'T IN THE RANGE
     else:
         print("Please Select an Option Within the Range")
-
-
-    
-        
-
-
 
 
 #THINGS TO DO:
@@ -170,8 +163,8 @@ while loop == 0:
 #INPUT[X]
 #ANALYZE[X]
 #REPORT[]
-#TOTAL GRADE[]
-#LETTER GRADE[]
-#CLASS AVERAGE[]
+#TOTAL GRADE[X]
+#LETTER GRADE[X]
+#CLASS AVERAGE[X]
 #GRADE DISTRIBUTION[]
 #VISUALIZATION OF THE STORED DATA AS REQUESTED[]
