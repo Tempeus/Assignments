@@ -5,41 +5,39 @@ Friday, May 4th
 S. Hillal, Instructor
 Assignment 3
 '''
+#OPENING FILE
+txt = open("students.txt","r")
+lines = txt.readlines()
+
+#DETERMINING NUMBER OF STUDENTS
+numStu = 0
+for line in lines:
+    numStu += 1
+   
 #STUDENT CLASS
 class Student: 
     'Base class for all students' 
     Count = 0   
-    def __init__(self,st_name,st_id,total_grade = 0,st_credits=0): 
+    def __init__(self,st_name,st_id,total_grade = 0): 
         self.name = st_name
         self.id = st_id
         self.grade = total_grade
-        self.credits = st_credits
         Student.Count += 1
-        
-    def __del__(self):
-        Student.Count -= 1
-        print ("Deleting Student instance!")
 
     def __eq__(self,student):
         return (self.id == student.id)
-
-    def __repr__(self):
-        return("student {} {} {}".format(self.id,self.name,self.grade))
-
-
-    #LETTER GRADE IDENTIFIER [FIX NEEDED]
-    def LetterGradeIdentifier(StuID):
-        iDpos = iD.index(StuID)
-        totalGradeStudent = totalGrade[iDpos]
+    
+    #LETTER GRADE IDENTIFIER 
+    def LetterGradeIdentifier(stuID):
         letter = 0
-
-        if totalGradeStudent >= 87:
+        grade = int(studentDICT.get(stuID)[1])
+        if grade >= 87:
             letter = "A"
 
-        elif totalGradeStudent >= 75 and totalGradeStudent <= 86:
+        elif grade >= 75 and grade <= 86:
             letter = "B"
 
-        elif totalGradeStudent >= 65 and totalGradeStudent <= 74:
+        elif grade >= 65 and grade <= 74:
             letter = "C"
 
         else:
@@ -47,18 +45,19 @@ class Student:
 
         return letter
     
-    #TOTAL GRADE OF STUDENT FINDER #[FIX NEEDED]
+    #TOTAL GRADE OF STUDENT FINDER 
     def TotalGradeFinder(stuID):
         ''' This retrieves the total grade of a specified student using his/her student ID'''
         return studentDICT.get(stuID)[1]
 
-    #CLASS AVERAGE CALCULATOR #[FIX NEEDED]
-    def ClassAverage(): #go through the lines and retrieve ids
+    #CLASS AVERAGE CALCULATOR 
+    def ClassAverage(): 
         numb = 0
         totalPercent = 0
         while numb != numStu:
-            totalPercent += studentDICT.get(ID)[1]
-            numb += 1
+            for ID in studentDICT.keys():
+                totalPercent += studentDICT.get(ID)[1]
+                numb += 1
         return (totalPercent / numb)
 
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
@@ -68,8 +67,8 @@ class Student:
             numB = 0
             numC = 0
             numF = 0
-
-            while m != studentNum:
+            
+            while m != numStu:
                 if matrixData[m][9].count("A") == 1:
                     numA += 1
                     m += 1
@@ -98,15 +97,7 @@ print("----------------")
 
 #STUDENT INFORMATION LIST
 studentDICT = {}
-
-#OPENING FILE
-txt = open("students.txt","r")
-lines = txt.readlines()
-
-#DETERMINING NUMBER OF STUDENTS
-numStu = 0
-for line in lines:
-    numStu += 1
+    
 #INPUT AND LOOP
 loop = 0
 while loop == 0:
