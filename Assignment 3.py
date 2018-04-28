@@ -6,12 +6,12 @@ S. Hillal, Instructor
 Assignment 3
 '''
 #OPENING FILE
-txt = open("students.txt","r")
+txt = open("students.txt","r") 
 lines = txt.readlines()
 
 #DETERMINING NUMBER OF STUDENTS
 numStu = 0
-for line in lines:
+for line in lines: #everytime the program goes through a line in the txt, numStu will + 1
     numStu += 1
    
 #STUDENT CLASS
@@ -30,7 +30,7 @@ class Student:
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(stuID):
         letter = 0
-        grade = int(studentDICT.get(stuID)[1])
+        grade = int(studentDICT.get(stuID)[1]) 
         if grade >= 87:
             letter = "A"
 
@@ -128,8 +128,27 @@ while loop == 0:
             continue
         
     #DISPLAY ALL STUDENT RECORDS
-    #if answer == "2":
-        
+    #elif answer == "2":
+
+    #DISPLAY INFORMATION FOR SPECIFIC STUDENT
+    elif answer == "3":
+        ID = input("Please enter the ID of the student: ")
+        if ID in studentDICT.keys():
+            totGRADE = Student.TotalGradeFinder(ID)
+            letGRADE = Student.LetterGradeIdentifier(ID)
+            print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE)
+            print(studentDICT.get(ID)[0][0] + "'s letter grade is:",letGRADE)
+        else:
+            print("Error: either you didn't let the program read or process student records or you entered a invalid ID")
+
+    #DISPLAY CLASS AVERAGE OR GRADE DISTRIBUTION
+    elif answer == "4":
+        if studentDICT != {}:
+            print("The class average is:",Student.ClassAverage())
+            #print("The Grade Distribution is:\n",
+        else:
+            print("Error: you didn't let the program read or process student records")
+    
     #EXIT FUNCTION
     elif answer == "5":
         print("Exiting Program...")
