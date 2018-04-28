@@ -110,13 +110,13 @@ while loop == 0:
         lineNUM = 0
         condition = True
         while lineNUM != numStu:
-            if lineNUM <= 10:
+            if lineNUM <= 10: #Preventing the program from taking more than 10 students
                 row = lines[lineNUM].split(",")
                 row[7] = row[7].strip("\n") #Takes away the annoying \n from the last evaluation
-                totalGRADE = (float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]) + float(row[6]) + float(row[7]))
+                totalGRADE = (float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]) + float(row[6]) + float(row[7])) #Sum of all the two test grades and the 4 assignment grades
                 studentINFO = [row, totalGRADE] #has all the information of the student in a form of a list in order to put it in the dictionary
                 studentDICT.setdefault(row[1], studentINFO) #The student's record is bounded with his/her ID
-                lineNUM += 1
+                lineNUM += 1 #
                 
             else:
                 condition = False
@@ -125,7 +125,7 @@ while loop == 0:
         if condition == True:
             print("Record Accepted")
             txt.close() #Closes student.txt file
-            print(studentDICT) #For testing Only
+            #print(studentDICT) #For testing Only
             continue
 
     #ERROR IF DIDNT PICK OPTION 1 FIRST
@@ -133,16 +133,29 @@ while loop == 0:
         print("Error: either you didn't let the program read or process student records ")
 
     #DISPLAY ALL STUDENT RECORDS
-    #elif answer == "2":
+    elif answer == "2":
+        print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:5s}'.format("T 1"),'{:5s}'.format("T 2"),'{:5s}'.format("A 1"),'{:5s}'.format("A 2"),'{:5s}'.format("A 3"),'{:5s}'.format("A 4"),'{:5s}'.format("Grade"))
+        for info in studentDICT.values(): #This will take the ID of each student in the dictionary
+            name = info[0][0]
+            sID = info[0][1]
+            test1 = info[0][2]
+            test2 = info[0][3]
+            a1 = info[0][4]
+            a2 = info[0][5]
+            a3 = info[0][6]
+            a4 = info[0][7]
+            tot = info[1] 
+            print('{:5s}'.format(name),'{:5s}'.format(sID),'{:5s}'.format(test1),'{:5s}'.format(test2),'{:5s}'.format(a1),'{:5s}'.format(a2),'{:5s}'.format(a3),'{:5s}'.format(a4),'{:5.1f}'.format(tot))
 
     #DISPLAY INFORMATION FOR SPECIFIC STUDENT
     elif answer == "3":
         ID = input("Please enter the ID of the student: ")
-        if ID in studentDICT.keys():
-            totGRADE = Student.TotalGradeFinder(ID)
-            letGRADE = Student.LetterGradeIdentifier(ID)
-            print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE)
+        if ID in studentDICT.keys(): #This will take the ID of each student in the Dictionary 
+            totGRADE = Student.TotalGradeFinder(ID) #This will find the total grade of the student with the specific ID
+            letGRADE = Student.LetterGradeIdentifier(ID) #This will find the letter grade of the student with the specific ID
+            print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
             print(studentDICT.get(ID)[0][0] + "'s letter grade is:",letGRADE)
+
         elif ID not in studentDICT.keys():
             print("Error: entered an invalid ID")
         
