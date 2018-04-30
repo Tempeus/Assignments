@@ -14,7 +14,7 @@ numStu = 0
 for line in lines: #everytime the program goes through a line in the txt, numStu will + 1
     numStu += 1
    
-#STUDENT CLASS
+#STUDENT CLASS [REWORK NEEDED]
 class Student: 
     'Base class for all students' 
     Count = 0   
@@ -30,34 +30,34 @@ class Student:
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(stuID):
         letter = 0
-        grade = int(studentDICT.get(stuID)[1]) 
+        grade = int(studentDICT.get(stuID)[1]) #This is the position for the grade in the dictionary
         if grade >= 87:
-            letter = "A"
+            letter = "A" #If the value at the position is higher than 87, it return A
 
-        elif grade >= 75 and grade <= 86:
+        elif grade >= 75 and grade <= 86: #If the value at the position is higher than 75 and lower than 86, it returns B
             letter = "B"
 
-        elif grade >= 65 and grade <= 74:
+        elif grade >= 65 and grade <= 74: #if the value at the position is higher than 65 and lower than 74, it returns C
             letter = "C"
 
         else:
-            letter = "F"
+            letter = "F" 
 
         return letter
     
     #TOTAL GRADE OF STUDENT FINDER 
     def TotalGradeFinder(stuID):
         ''' This retrieves the total grade of a specified student using his/her student ID'''
-        return studentDICT.get(stuID)[1]
+        return studentDICT.get(stuID)[1] #It will get the value 
 
     #CLASS AVERAGE CALCULATOR 
     def ClassAverage(): 
-        numb = 0
-        totalPercent = 0
-        while numb != numStu:
-            for ID in studentDICT.keys():
-                totalPercent += studentDICT.get(ID)[1]
-                numb += 1
+        numb = 0 #used to indicate how many times this function will run
+        totalPercent = 0 #The total percentage
+        while numb != numStu: #once numb equals to numStu, this function will stop
+            for ID in studentDICT.keys(): #for each key in the dictionary
+                totalPercent += studentDICT.get(ID)[1] #sum of all grades
+                numb += 1 
         return (totalPercent / numb)
 
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
@@ -92,11 +92,11 @@ print("5- Exit")
 print("----------------")
 
 #STUDENT INFORMATION LIST
-studentDICT = {}
+studentDICT = {} #empty student dictionary
     
 #INPUT AND LOOP
 loop = 0
-while loop == 0:
+while loop == 0: #making a loop
     answer = input("Select an Option by Entering It's Number: ")
 
     #EXIT FUNCTION
@@ -108,7 +108,7 @@ while loop == 0:
     elif answer == "1":
         
         lineNUM = 0
-        condition = True
+        condition = True #used to prevent the number of students exceeding 10 seen below
         while lineNUM != numStu:
             if lineNUM <= 10: #Preventing the program from taking more than 10 students
                 row = lines[lineNUM].split(",")
@@ -129,12 +129,13 @@ while loop == 0:
             continue
 
     #ERROR IF DIDNT PICK OPTION 1 FIRST
-    elif studentDICT == {}:
+    elif studentDICT == {}: #if the dicitonary is empty, it is because you didnt choose option one
         print("Error: either you didn't let the program read or process student records ")
 
     #DISPLAY ALL STUDENT RECORDS
     elif answer == "2":
         print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:5s}'.format("T 1"),'{:5s}'.format("T 2"),'{:5s}'.format("A 1"),'{:5s}'.format("A 2"),'{:5s}'.format("A 3"),'{:5s}'.format("A 4"),'{:5s}'.format("Grade"))
+        #printing a template / Category for the table (Name, ID, T1, T2, A1, A2, A3, A4)
         for info in studentDICT.values(): #This will take the ID of each student in the dictionary
             name = info[0][0]
             sID = info[0][1]
@@ -146,7 +147,8 @@ while loop == 0:
             a4 = info[0][7]
             tot = info[1] 
             print('{:5s}'.format(name),'{:5s}'.format(sID),'{:5s}'.format(test1),'{:5s}'.format(test2),'{:5s}'.format(a1),'{:5s}'.format(a2),'{:5s}'.format(a3),'{:5s}'.format(a4),'{:5.1f}'.format(tot))
-
+            #printing the values for the table
+                
     #DISPLAY INFORMATION FOR SPECIFIC STUDENT
     elif answer == "3":
         ID = input("Please enter the ID of the student: ")
@@ -156,13 +158,13 @@ while loop == 0:
             print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
             print(studentDICT.get(ID)[0][0] + "'s letter grade is:",letGRADE)
 
-        elif ID not in studentDICT.keys():
+        elif ID not in studentDICT.keys(): #if the input does not correspond to the key of the dictionary
             print("Error: entered an invalid ID")
         
 
     #DISPLAY CLASS AVERAGE OR GRADE DISTRIBUTION
     elif answer == "4":
-        if studentDICT != {}:
+        if studentDICT != {}: #preventing an error from ocurring since if the dictionary is empty, it would be impossible to calculate the average / letter grade
             print("The class average is:",Student.ClassAverage())
             print("The Grade Distribution is:\n" + Student.LetterGradeDistribution())
 
@@ -175,9 +177,10 @@ while loop == 0:
 #STUDENT CLASS[X]
 #INPUT[X]
 #ANALYZE[X]
-#REPORT[]
+#REPORT[X]
 #TOTAL GRADE[X]
 #LETTER GRADE[X]
 #CLASS AVERAGE[X]
-#GRADE DISTRIBUTION[]
-#VISUALIZATION OF THE STORED DATA AS REQUESTED[]
+#GRADE DISTRIBUTION[X]
+#VISUALIZATION OF THE STORED DATA AS REQUESTED[X]
+#IF THERE ARE TWO IDENTICAL IDS IN THE TEXT FILE[]
