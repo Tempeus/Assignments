@@ -5,6 +5,7 @@ Friday, May 4th
 S. Hillal, Instructor
 Assignment 3
 '''
+
 #OPENING FILE
 txt = open("students.txt","r") 
 lines = txt.readlines()
@@ -18,19 +19,25 @@ for line in lines: #everytime the program goes through a line in the txt, numStu
 class Student: 
     'Base class for all students' 
     Count = 0   
-    def __init__(self,st_name,st_id,total_grade = 0): 
-        self.name = st_name
-        self.id = st_id
-        self.grade = total_grade
-        Student.Count += 1
+    def __init__(self,name,ID,t1,t2,a1,a2,a3,a4,total):
+        self.name = name
+        self.ID = ID
+        self.t1 = t1
+        self.t2 = t2
+        self.a1 = a1
+        self.a2 = a2
+        self.a3 = a3
+        self.a4 = a4
+        self.total = total
+        self.letter = ""
 
-    def __eq__(self,student):
-        return (self.id == student.id)
-    
+    def __repr__(self):
+        return("{:5s} {:4s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
+               
     #LETTER GRADE IDENTIFIER 
-    def LetterGradeIdentifier(stuID):
+    def LetterGradeIdentifier(self):
         letter = 0
-        grade = int(studentDICT.get(stuID)[1]) #This is the position for the grade in the dictionary
+        grade = self.total #This is the position for the grade in the dictionary
         if grade >= 87:
             letter = "A" #If the value at the position is higher than 87, it return A
 
@@ -46,9 +53,9 @@ class Student:
         return letter
     
     #TOTAL GRADE OF STUDENT FINDER 
-    def TotalGradeFinder(stuID):
+    def TotalGradeFinder(self):
         ''' This retrieves the total grade of a specified student using his/her student ID'''
-        return studentDICT.get(stuID)[1] #It will get the value 
+        return self.total #It will get the value 
 
     #CLASS AVERAGE CALCULATOR 
     def ClassAverage(): 
@@ -66,6 +73,7 @@ class Student:
         numB = 0
         numC = 0
         numF = 0
+        
         for ID in studentDICT.keys():
             if Student.LetterGradeIdentifier(ID) == "A":
                 numA += 1
@@ -114,9 +122,10 @@ while loop == 0: #making a loop
                 row = lines[lineNUM].split(",")
                 row[7] = row[7].strip("\n") #Takes away the annoying \n from the last evaluation
                 totalGRADE = (float(row[2]) + float(row[3]) + float(row[4]) + float(row[5]) + float(row[6]) + float(row[7])) #Sum of all the two test grades and the 4 assignment grades
-                studentINFO = [row, totalGRADE] #has all the information of the student in a form of a list in order to put it in the dictionary
+                studentINFO = Student(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7], totalGRADE) #has all the information of the student in a form of a list in order to put it in the dictionary
+                studentINFO.LetterGradeIdentifier()
                 studentDICT.setdefault(row[1], studentINFO) #The student's record is bounded with his/her ID
-                lineNUM += 1 #
+                lineNUM += 1 #extra error checking
                 
             else:
                 condition = False
@@ -134,32 +143,27 @@ while loop == 0: #making a loop
 
     #DISPLAY ALL STUDENT RECORDS
     elif answer == "2":
+        print("")
         print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:6s}'.format("T 1"),'{:6s}'.format("T 2"),'{:6s}'.format("A1"),'{:6s}'.format("A 2"),'{:6s}'.format("A 3"),'{:6s}'.format("A 4"),'{:6s}'.format("Grade"))
         #printing a template / Category for the table (Name, ID, T1, T2, A1, A2, A3, A4)
-        for info in studentDICT.values(): #This will take the ID of each student in the dictionary
-            name = str(info[0][0])
-            sID = str(info[0][1])
-            test1 = str(info[0][2])
-            test2 = str(info[0][3])
-            a1 = str(info[0][4])
-            a2 = str(info[0][5])
-            a3 = str(info[0][6])
-            a4 = str(info[0][7])
-            tot = info[1]
-            print('{:5s}'.format(name),'{:4s}'.format(sID),'{:6s}'.format(test1 + "/20"),'{:6s}'.format(test2 + "/20"),'{:6s}'.format(a1 + "/15"),'{:6s}'.format(a2 + "/15"),'{:6s}'.format(a3 + "/15"),'{:6s}'.format(a4 + "/15"),'{:5.1f}'.format(tot ))
+        for i in studentDICT:#This will take the ID of each student in the dictionary
+            print('{}'.format(studentDICT.get(i)))
             #printing the values for the table
-                
+        print("")
+        
     #DISPLAY INFORMATION FOR SPECIFIC STUDENT
     elif answer == "3":
         ID = input("Please enter the ID of the student: ")
-        if ID in studentDICT.keys(): #This will take the ID of each student in the Dictionary 
-            totGRADE = Student.TotalGradeFinder(ID) #This will find the total grade of the student with the specific ID
-            letGRADE = Student.LetterGradeIdentifier(ID) #This will find the letter grade of the student with the specific ID
-            print(studentDICT.get(ID)[0][0] + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
-            print(studentDICT.get(ID)[0][0] + "'s letter grade is:",letGRADE)
-
-        elif ID not in studentDICT.keys(): #if the input does not correspond to the key of the dictionary
+        student = studentDICT.get(ID,0)
+        if not student:
             print("Error: entered an invalid ID")
+        else:
+
+            totGRADE = student.TotalGradeFinder() #This will find the total grade of the student with the specific ID
+            letGRADE = student.LetterGradeIdentifier() #This will find the letter grade of the student with the specific ID
+            print(student.name + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
+            print(student.name + "'s letter grade is:",letGRADE)
+
         
 
     #DISPLAY CLASS AVERAGE OR GRADE DISTRIBUTION
@@ -184,3 +188,4 @@ while loop == 0: #making a loop
 #GRADE DISTRIBUTION[X]
 #VISUALIZATION OF THE STORED DATA AS REQUESTED[X]
 #IF THERE ARE TWO IDENTICAL IDS IN THE TEXT FILE[]
+#DIFFERENT IDS AND DUPLICATES
