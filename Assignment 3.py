@@ -134,19 +134,19 @@ while loop == 0: #making a loop
 
     #DISPLAY ALL STUDENT RECORDS
     elif answer == "2":
-        print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:5s}'.format("T 1"),'{:5s}'.format("T 2"),'{:5s}'.format("A 1"),'{:5s}'.format("A 2"),'{:5s}'.format("A 3"),'{:5s}'.format("A 4"),'{:5s}'.format("Grade"))
+        print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:6s}'.format("T 1"),'{:6s}'.format("T 2"),'{:6s}'.format("A1"),'{:6s}'.format("A 2"),'{:6s}'.format("A 3"),'{:6s}'.format("A 4"),'{:6s}'.format("Grade"))
         #printing a template / Category for the table (Name, ID, T1, T2, A1, A2, A3, A4)
         for info in studentDICT.values(): #This will take the ID of each student in the dictionary
-            name = info[0][0]
-            sID = info[0][1]
-            test1 = info[0][2]
-            test2 = info[0][3]
-            a1 = info[0][4]
-            a2 = info[0][5]
-            a3 = info[0][6]
-            a4 = info[0][7]
-            tot = info[1] 
-            print('{:5s}'.format(name),'{:5s}'.format(sID),'{:5s}'.format(test1),'{:5s}'.format(test2),'{:5s}'.format(a1),'{:5s}'.format(a2),'{:5s}'.format(a3),'{:5s}'.format(a4),'{:5.1f}'.format(tot))
+            name = str(info[0][0])
+            sID = str(info[0][1])
+            test1 = str(info[0][2])
+            test2 = str(info[0][3])
+            a1 = str(info[0][4])
+            a2 = str(info[0][5])
+            a3 = str(info[0][6])
+            a4 = str(info[0][7])
+            tot = info[1]
+            print('{:5s}'.format(name),'{:4s}'.format(sID),'{:6s}'.format(test1 + "/20"),'{:6s}'.format(test2 + "/20"),'{:6s}'.format(a1 + "/15"),'{:6s}'.format(a2 + "/15"),'{:6s}'.format(a3 + "/15"),'{:6s}'.format(a4 + "/15"),'{:5.1f}'.format(tot ))
             #printing the values for the table
                 
     #DISPLAY INFORMATION FOR SPECIFIC STUDENT
