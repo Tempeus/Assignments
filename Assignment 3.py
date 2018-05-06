@@ -15,7 +15,7 @@ numStu = 0
 for line in lines: #everytime the program goes through a line in the txt, numStu will + 1
     numStu += 1
    
-#STUDENT CLASS [REWORK NEEDED]
+#STUDENT CLASS 
 class Student: 
     'Base class for all students' 
     Count = 0   
@@ -36,6 +36,7 @@ class Student:
                
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(self):
+        '''This determines the letter grade of each student depending on her total grade'''
         letter = 0
         grade = self.total #This is the position for the grade in the dictionary
         if grade >= 87:
@@ -58,7 +59,8 @@ class Student:
         return self.total #It will get the value 
 
     #CLASS AVERAGE CALCULATOR 
-    def ClassAverage(): 
+    def ClassAverage():
+        'This finds the class average of the entire class'
         numb = 0 #used to indicate how many times this function will run
         totalPercent = 0 #The total percentage
         while numb != numStu: #once numb equals to numStu, this function will stop
@@ -69,6 +71,7 @@ class Student:
 
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
     def LetterGradeDistribution():
+        'This finds how much students received each letter grade'
         numA = 0
         numB = 0
         numC = 0
@@ -158,7 +161,6 @@ while loop == 0: #making a loop
         if not student:
             print("Error: entered an invalid ID")
         else:
-
             totGRADE = student.TotalGradeFinder() #This will find the total grade of the student with the specific ID
             letGRADE = student.LetterGradeIdentifier() #This will find the letter grade of the student with the specific ID
             print(student.name + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
