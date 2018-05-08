@@ -32,7 +32,7 @@ class Student:
         self.letter = ""
 
     def __repr__(self):
-        return("{:5s} {:4s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
+        return("{:5s} {:5s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:4.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
                
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(self):
