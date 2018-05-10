@@ -18,7 +18,10 @@ for line in lines: #everytime the program goes through a line in the txt, numStu
 #STUDENT CLASS 
 class Student: 
     'Base class for all students' 
-    Count = 0   
+    CountA = 0
+    CountB = 0
+    CountC = 0
+    CountF = 0
     def __init__(self,name,ID,t1,t2,a1,a2,a3,a4,total):
         self.name = name
         self.ID = ID
