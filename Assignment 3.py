@@ -32,7 +32,7 @@ class Student:
         self.letter = ""
 
     def __repr__(self):
-        return("{:5s} {:5s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:4.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
+        return("{:5s} {:4s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
                
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(self):
@@ -61,13 +61,15 @@ class Student:
     #CLASS AVERAGE CALCULATOR 
     def ClassAverage():
         'This finds the class average of the entire class'
-        numb = 0 #used to indicate how many times this function will run
         totalPercent = 0 #The total percentage
-        while numb != numStu: #once numb equals to numStu, this function will stop
-            for ID in studentDICT.keys(): #for each key in the dictionary
-                totalPercent += studentDICT.get(ID)[1] #sum of all grades
-                numb += 1 
-        return (totalPercent / numb)
+        lineN = 0
+        while lineN != numStu:
+            r = lines[lineN].split(",")
+            r[7] = r[7].strip("\n") #Takes away the annoying \n from the last evaluation
+            tot = (float(r[2]) + float(r[3]) + float(r[4]) + float(r[5]) + float(r[6]) + float(r[7]))
+            totalPercent += tot #sum of all grades\
+            lineN += 1
+        return (totalPercent / numStu)
 
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
     def LetterGradeDistribution():
@@ -156,10 +158,28 @@ while loop == 0: #making a loop
         
     #DISPLAY INFORMATION FOR SPECIFIC STUDENT
     elif answer == "3":
+        NAME = input("Please enter the name of the student: ")
         ID = input("Please enter the ID of the student: ")
         student = studentDICT.get(ID,0)
-        if not student:
+        if not student: #if the ID given was not found in the dictionary
             print("Error: entered an invalid ID")
+        elif NAME != student.name: #if the input name the student was not corresponded to the it's ID
+            print("Error: entered a name that isn't corresponded to ID")
+            autocorrect = input("Did you mean " + student.name + " ? (y/n): ") #Just in case the user name a typo with the name of the studen so the program can autocorrect
+
+            if autocorrect.lower() == "y":
+                NAME = student.name
+                totGRADE = student.TotalGradeFinder() #This will find the total grade of the student with the specific ID
+                letGRADE = student.LetterGradeIdentifier() #This will find the letter grade of the student with the specific ID
+                print(student.name + "'s total grade is:",totGRADE) #studentDICT[0][0] is the naem of  the student
+                print(student.name + "'s letter grade is:",letGRADE)
+
+            elif autocorrect.lower() == "n": #if the user put n, the program will go back to the main menu
+                continue
+            
+            else:
+                print("The answer you put was not a given option")
+                continue
         else:
             totGRADE = student.TotalGradeFinder() #This will find the total grade of the student with the specific ID
             letGRADE = student.LetterGradeIdentifier() #This will find the letter grade of the student with the specific ID
@@ -171,7 +191,7 @@ while loop == 0: #making a loop
     #DISPLAY CLASS AVERAGE OR GRADE DISTRIBUTION
     elif answer == "4":
         if studentDICT != {}: #preventing an error from ocurring since if the dictionary is empty, it would be impossible to calculate the average / letter grade
-            print("The class average is:",Student.ClassAverage())
+            print("The class average is:", Student.ClassAverage())
             print("The Grade Distribution is:\n" + Student.LetterGradeDistribution())
 
     #IF INPUT ISN'T IN THE RANGE
