@@ -32,7 +32,7 @@ class Student:
         self.letter = ""
 
     def __repr__(self):
-        return("{:5s} {:4s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
+        return("{:5s} {:5s} {:6s} {:6s} {:6s} {:6s} {:6s} {:6s} {:4.1f} {:6s}".format(self.name,self.ID,self.t1,self.t2,self.a1,self.a2,self.a3,self.a4,self.total,self.letter))
                
     #LETTER GRADE IDENTIFIER 
     def LetterGradeIdentifier(self):
@@ -149,7 +149,7 @@ while loop == 0: #making a loop
     #DISPLAY ALL STUDENT RECORDS
     elif answer == "2":
         print("")
-        print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:6s}'.format("T 1"),'{:6s}'.format("T 2"),'{:6s}'.format("A1"),'{:6s}'.format("A 2"),'{:6s}'.format("A 3"),'{:6s}'.format("A 4"),'{:6s}'.format("Grade"))
+        print('{:5s}'.format("Name"),'{:5s}'.format("ID"),'{:6s}'.format("T 1"),'{:6s}'.format("T 2"),'{:6s}'.format("A 1"),'{:6s}'.format("A 2"),'{:6s}'.format("A 3"),'{:6s}'.format("A 4"),'{:6s}'.format("Grade"))
         #printing a template / Category for the table (Name, ID, T1, T2, A1, A2, A3, A4)
         for i in studentDICT:#This will take the ID of each student in the dictionary
             print('{}'.format(studentDICT.get(i)))
