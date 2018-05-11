@@ -44,16 +44,20 @@ class Student:
         grade = self.total #This is the position for the grade in the dictionary
         if grade >= 87:
             letter = "A" #If the value at the position is higher than 87, it return A
-
+            Student.CountA += 1 #used for letter grade distributor
+            
         elif grade >= 75 and grade <= 86: #If the value at the position is higher than 75 and lower than 86, it returns B
             letter = "B"
-
+            Student.CountB += 1
+            
         elif grade >= 65 and grade <= 74: #if the value at the position is higher than 65 and lower than 74, it returns C
             letter = "C"
-
+            Student.CountC += 1
+            
         else:
-            letter = "F" 
-
+            letter = "F"
+            Student.CountF += 1
+            
         return letter
     
     #TOTAL GRADE OF STUDENT FINDER 
@@ -77,25 +81,8 @@ class Student:
     #LETTER GARDE DISTRIBUTOR #[FIX NEEDED]
     def LetterGradeDistribution():
         'This finds how much students received each letter grade'
-        numA = 0
-        numB = 0
-        numC = 0
-        numF = 0
-        
-        for ID in studentDICT.keys():
-            if Student.LetterGradeIdentifier(ID) == "A":
-                numA += 1
-                
-            elif Student.LetterGradeIdentifier(ID) == "B":
-                numB += 1
-                
-            elif Student.LetterGradeIdentifier(ID) == "C":
-                numC += 1
-                
-            elif Student.LetterGradeIdentifier(ID) == "F":
-                numF += 1
-            
-        return "A: " +str(numA)+ "\nB: " +str(numB)+ "\nC: " +str(numC)+ "\nF: " +str(numF)
+                    
+        return "A: " +str(Student.CountA)+ "\nB: " +str(Student.CountB)+ "\nC: " +str(Student.CountC)+ "\nF: " +str(Student.CountF)
         
 #MENU
 print("Welcome to the Teacher's Simple Class Calculator")
