@@ -1,0 +1,5 @@
+2018-05-15 17:38:22.178115
+Account type: type 
+Bank name: name 
+Balance: $10
+
