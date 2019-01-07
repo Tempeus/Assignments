@@ -29,10 +29,10 @@ Letter grades that correspond to the total score:
 65 to 74 = C
 below 65 = F
 
-Assignment 3:
+Assignment 3: (REQUIRES students.txt)
 Do assignment 2 with Class and functions while also opening a premade text file with all the student information and reading those info. 
 
-Assignment 4:
+Assignment 4: (REQUIRES MyAccount.txt)
 Define an Account class that can be used to create (instantiate) different types of bank accounts:
 Chequing, saving, Investment, loan, etc.
 
